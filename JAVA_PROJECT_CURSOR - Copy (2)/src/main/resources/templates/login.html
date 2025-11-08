@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8"/>
+    <title>Login</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.9.4/css/bulma.min.css">
+</head>
+<body class="section" style="min-height:100vh; display:flex; align-items:center;">
+<div class="container" style="max-width: 420px;">
+    <div class="has-text-centered" style="margin-bottom: 8px;">
+        <h1 class="title is-3">Leave Management</h1>
+        <p class="subtitle is-6" th:if="${param.role == null}">Sign in to continue</p>
+        <p class="subtitle is-6" th:if="${param.role != null}">Sign in as <span th:text="${param.role}"></span></p>
+    </div>
+    <div th:if="${param.error}" class="notification is-danger">
+        Invalid username or password.
+    </div>
+    <div th:if="${param.logout}" class="notification is-success">
+        You have been logged out successfully.
+    </div>
+    
+    <form th:action="@{/login(role=${param.role})}" method="post" class="box" style="box-shadow:0 8px 24px rgba(10,10,10,0.1)">
+        <div class="field">
+            <label class="label">Username</label>
+            <div class="control">
+                <input class="input" type="text" name="username" required>
+            </div>
+        </div>
+        <div class="field">
+            <label class="label">Password</label>
+            <div class="control">
+                <input class="input" type="password" name="password" required>
+            </div>
+        </div>
+        <div class="field is-flex is-justify-content-space-between is-align-items-center">
+            <span class="is-size-7 has-text-grey">Demo: admin/admin123</span>
+            <button class="button is-primary" type="submit">Login</button>
+        </div>
+        <p class="help">manager1/manager123, employee1/employee123</p>
+    </form>
+</div>
+</body>
+</html>
+
+

@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8"/>
+    <title>Choose Role</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.9.4/css/bulma.min.css">
+</head>
+<body class="section" style="min-height:100vh;display:flex;align-items:center;">
+<div class="container">
+    <h1 class="title has-text-centered">Welcome to Leave Management</h1>
+    <p class="subtitle has-text-centered">Choose how you want to sign in</p>
+    <div class="columns is-centered">
+        <div class="column is-3">
+            <a th:href="@{/login(role='EMPLOYEE')}" class="box has-text-centered" style="padding:2rem;box-shadow:0 10px 24px rgba(10,10,10,.08)">
+                <span class="icon is-large"><i class="fas fa-user fa-2x"></i></span>
+                <h2 class="title is-5" style="margin-top:.5rem;">Employee Login</h2>
+                <p class="is-size-7 has-text-grey">Apply and track your leaves</p>
+            </a>
+        </div>
+        <div class="column is-3">
+            <a th:href="@{/login(role='MANAGER')}" class="box has-text-centered" style="padding:2rem;box-shadow:0 10px 24px rgba(10,10,10,.08)">
+                <span class="icon is-large"><i class="fas fa-user-tie fa-2x"></i></span>
+                <h2 class="title is-5" style="margin-top:.5rem;">Manager Login</h2>
+                <p class="is-size-7 has-text-grey">Approve team leave requests</p>
+            </a>
+        </div>
+        <div class="column is-3">
+            <a th:href="@{/login(role='HR')}" class="box has-text-centered" style="padding:2rem;box-shadow:0 10px 24px rgba(10,10,10,.08)">
+                <span class="icon is-large"><i class="fas fa-users-cog fa-2x"></i></span>
+                <h2 class="title is-5" style="margin-top:.5rem;">HR Login</h2>
+                <p class="is-size-7 has-text-grey">Monitor, calendar and reports</p>
+            </a>
+        </div>
+    </div>
+</div>
+<script src="https://kit.fontawesome.com/a2e0e9e2f7.js" crossorigin="anonymous"></script>
+</body>
+</html>

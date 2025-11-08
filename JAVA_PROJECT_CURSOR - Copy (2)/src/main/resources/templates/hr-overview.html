@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8"/>
+    <title>HR Overview</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.9.4/css/bulma.min.css">
+</head>
+<body class="section">
+<div class="container">
+    <div th:replace="fragments/navbar :: body"></div>
+    <div class="is-flex is-justify-content-space-between is-align-items-center mb-3">
+        <h1 class="title is-4">Approved Leaves</h1>
+        <div class="buttons">
+            <a class="button is-link is-light" th:href="@{/reports/excel}">Export Excel</a>
+            <a class="button is-info is-light" th:href="@{/reports/xml}">Export XML</a>
+            <a class="button is-primary" th:href="@{/calendar}">Calendar</a>
+        </div>
+    </div>
+    <table class="table is-fullwidth is-hoverable is-striped">
+        <thead><tr><th>Employee</th><th>Type</th><th>Start</th><th>End</th><th>Days</th></tr></thead>
+        <tbody>
+        <tr th:each="lr : ${approved}">
+            <td th:text="${lr.employee.fullName}"></td>
+            <td><span class="tag is-link is-light" th:text="${lr.leaveType}"></span></td>
+            <td th:text="${lr.startDate}"></td>
+            <td th:text="${lr.endDate}"></td>
+            <td th:text="${lr.totalDays}"></td>
+        </tr>
+        </tbody>
+    </table>
+</div>
+</body>
+</html>
+
+
+

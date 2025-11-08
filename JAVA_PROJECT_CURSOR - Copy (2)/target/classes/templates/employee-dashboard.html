@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8" />
+    <title>Employee Dashboard</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.9.4/css/bulma.min.css">
+    <style>.summary {display:flex; gap:1rem;}</style>
+</head>
+<body>
+    <div th:replace="fragments/navbar :: navbar"></div>
+    <section class="section">
+        <div class="container">
+            <h1 class="title">Hello, <span th:text="${me.fullName}">User</span></h1>
+            <div class="box">
+                <h2 class="subtitle">Your leave balances</h2>
+                <div class="summary">
+                    <div th:each="b : ${balances}" class="card" style="padding:12px">
+                        <div class="card-content">
+                            <div class="content">
+                                <strong th:text="${b.leaveType}"></strong>
+                                <div>Remaining: <span th:text="${b.remainingDays}"></span></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="box">
+                <h2 class="subtitle">My recent leave requests</h2>
+                <table class="table is-fullwidth">
+                    <thead><tr><th>Type</th><th>From</th><th>To</th><th>Status</th></tr></thead>
+                    <tbody>
+                        <tr th:each="l : ${myLeaves}">
+                            <td th:text="${l.leaveType}"></td>
+                            <td th:text="${l.startDate}"></td>
+                            <td th:text="${l.endDate}"></td>
+                            <td th:text="${l.status}"></td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </section>
+</body>
+</html>

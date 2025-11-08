@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8" />
+    <title>HR Dashboard</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.9.4/css/bulma.min.css">
+</head>
+<body>
+    <div th:replace="fragments/navbar :: navbar"></div>
+    <section class="section">
+        <div class="container">
+            <h1 class="title">HR Dashboard</h1>
+            <div class="box">
+                <p>Approved leaves this period: <strong th:text="${approvedCount}">0</strong></p>
+                <p style="margin-top:1rem"><a class="button is-primary" href="/hr/overview">View Overview</a></p>
+            </div>
+            <div class="box">
+                <h2 class="subtitle">Reports</h2>
+                <a class="button is-light" href="/reports">Go to Reports</a>
+            </div>
+        </div>
+    </section>
+</body>
+</html>

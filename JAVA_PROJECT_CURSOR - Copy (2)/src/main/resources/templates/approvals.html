@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8"/>
+    <title>Manager Approvals</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.9.4/css/bulma.min.css">
+</head>
+<body class="section">
+<div class="container">
+    <div th:replace="fragments/navbar :: body"></div>
+    <h1 class="title is-4">Pending Approvals</h1>
+    <table class="table is-fullwidth is-hoverable is-striped">
+        <thead><tr><th>Employee</th><th>Type</th><th>Dates</th><th>Days</th><th>Reason</th><th>Actions</th></tr></thead>
+        <tbody>
+        <tr th:each="lr : ${pending}">
+            <td th:text="${lr.employee.fullName}"></td>
+            <td><span class="tag is-link is-light" th:text="${lr.leaveType}"></span></td>
+            <td><span th:text="${lr.startDate}"></span> - <span th:text="${lr.endDate}"></span></td>
+            <td th:text="${lr.totalDays}"></td>
+            <td th:text="${lr.reason}"></td>
+            <td>
+                <form th:action="@{'/manager/approve/' + ${lr.id}}" method="post" style="display:inline">
+                    <input class="input" type="text" name="comment" placeholder="Comment"/>
+                    <button class="button is-success is-light" type="submit">Approve</button>
+                </form>
+                <form th:action="@{'/manager/reject/' + ${lr.id}}" method="post" style="display:inline">
+                    <input class="input" type="text" name="comment" placeholder="Comment"/>
+                    <button class="button is-danger is-light" type="submit">Reject</button>
+                </form>
+            </td>
+        </tr>
+        </tbody>
+    </table>
+    <a class="button" th:href="@{/dashboard}">Back</a>
+ </div>
+</body>
+</html>
+
+
+

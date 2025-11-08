@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8"/>
+    <title>Apply Leave</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.9.4/css/bulma.min.css">
+</head>
+<body class="section">
+<div class="container">
+    <div th:replace="fragments/navbar :: body"></div>
+    <div class="mb-4">
+        <h1 class="title is-4">Apply for Leave</h1>
+        <p class="has-text-grey is-size-7">Fill the details below and submit your request.</p>
+    </div>
+    <div th:if="${error}" class="notification is-danger" th:text="${error}"></div>
+    <form th:action="@{/employee/apply}" method="post" enctype="multipart/form-data" class="box" style="box-shadow:0 8px 24px rgba(10,10,10,0.08)">
+        <div class="field">
+            <label class="label">Leave Type</label>
+            <div class="control">
+                <div class="select">
+                    <select name="type">
+                        <option th:each="t : ${types}" th:value="${t}" th:text="${t}"></option>
+                    </select>
+                </div>
+            </div>
+        </div>
+        <div class="field">
+            <label class="label">Start Date</label>
+            <div class="control">
+                <input class="input" type="date" name="start" required>
+            </div>
+        </div>
+        <div class="field">
+            <label class="label">End Date</label>
+            <div class="control">
+                <input class="input" type="date" name="end" required>
+            </div>
+        </div>
+        <div class="field">
+            <label class="label">Reason</label>
+            <div class="control">
+                <textarea class="textarea" name="reason" required></textarea>
+            </div>
+            <p class="help">Be specific. For sick leave, mention symptoms or attach document.</p>
+        </div>
+        <div class="field">
+            <label class="label">Document (optional)</label>
+            <div class="control">
+                <input class="input" type="file" name="doc">
+            </div>
+            <p class="help">PDF/JPG/PNG up to ~5MB.</p>
+        </div>
+        <div class="field is-flex is-justify-content-space-between">
+            <a class="button" th:href="@{/dashboard}">Back</a>
+            <button class="button is-primary" type="submit">Submit Request</button>
+        </div>
+    </form>
+    <p class="help">For medical leave, attach medical certificate.</p>
+ </div>
+</body>
+</html>
+
+
+

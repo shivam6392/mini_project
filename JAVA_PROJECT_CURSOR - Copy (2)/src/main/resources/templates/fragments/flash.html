@@ -1,0 +1,11 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<body>
+<div th:if="${param.applied}" class="notification is-success is-light">Leave request submitted.</div>
+<div th:if="${param.approved}" class="notification is-success is-light">Leave approved.</div>
+<div th:if="${param.rejected}" class="notification is-danger is-light">Leave rejected.</div>
+<div th:if="${param.error}" class="notification is-danger is-light">Something went wrong.</div>
+</body>
+</html>
+
+

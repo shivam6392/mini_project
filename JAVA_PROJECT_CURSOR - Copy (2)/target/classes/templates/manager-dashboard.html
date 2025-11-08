@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8" />
+    <title>Manager Dashboard</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.9.4/css/bulma.min.css">
+</head>
+<body>
+    <div th:replace="fragments/navbar :: navbar"></div>
+    <section class="section">
+        <div class="container">
+            <h1 class="title">Manager Dashboard</h1>
+            <div class="box">
+                <p>You have <strong th:text="${pendingCount}">0</strong> pending approvals.</p>
+                <p style="margin-top:1rem"><a class="button is-primary" href="/manager/approvals">Go to Approvals</a></p>
+            </div>
+            <div class="box">
+                <h2 class="subtitle">Quick links</h2>
+                <a class="button is-light" href="/reports">Reports</a>
+            </div>
+        </div>
+    </section>
+</body>
+</html>

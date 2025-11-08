@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8"/>
+    <title>Dashboard</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.9.4/css/bulma.min.css">
+</head>
+<body class="section">
+<div class="container">
+    <div th:replace="fragments/navbar :: body"></div>
+    <div th:replace="fragments/flash :: body"></div>
+    <div class="mb-5">
+        <h1 class="title is-4">Welcome, <span th:text="${me.fullName}"></span></h1>
+        <p class="subtitle is-6 has-text-grey">Department: <span th:text="${me.department != null ? me.department.name : 'N/A'}"></span></p>
+    </div>
+
+    <h2 class="subtitle">My Leave Balances</h2>
+    <table class="table is-fullwidth is-hoverable is-striped">
+        <thead><tr><th>Type</th><th>Remaining Days</th></tr></thead>
+        <tbody>
+        <tr th:each="b : ${balances}">
+            <td>
+                <span class="tag is-link is-light" th:text="${b.leaveType}"></span>
+            </td>
+            <td>
+                <span class="tag is-info" th:text="${b.remainingDays}"></span>
+            </td>
+        </tr>
+        </tbody>
+    </table>
+
+    <div class="is-flex is-justify-content-space-between is-align-items-center">
+        <h2 class="subtitle">My Leave Requests</h2>
+        <a class="button is-primary" th:href="@{/employee/apply}">Apply Leave</a>
+    </div>
+    <table class="table is-fullwidth is-hoverable">
+        <thead><tr><th>Type</th><th>Start</th><th>End</th><th>Days</th><th>Status</th></tr></thead>
+        <tbody>
+        <tr th:each="lr : ${myLeaves}">
+            <td><span class="tag is-link is-light" th:text="${lr.leaveType}"></span></td>
+            <td th:text="${lr.startDate}"></td>
+            <td th:text="${lr.endDate}"></td>
+            <td th:text="${lr.totalDays}"></td>
+            <td>
+                <span class="tag" th:classappend="${lr.status.name()=='APPROVED'} ? ' is-success' : (${lr.status.name()=='REJECTED'} ? ' is-danger' : ' is-warning')" th:text="${lr.status}"></span>
+            </td>
+        </tr>
+        </tbody>
+    </table>
+</div>
+</body>
+</html>
+
+
+
